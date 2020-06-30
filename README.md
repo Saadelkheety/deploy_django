@@ -2,9 +2,13 @@
 > /etc/systemd/system/gunicorn.socket
 ```
 [Unit]
-Description=gunicorn daemon
-Requires=gunicorn.socket
-After=network.target
+Description=gunicorn socket
+
+[Socket]
+ListenStream=/run/gunicorn.sock
+
+[Install]
+WantedBy=sockets.target
 ```
 
 > /etc/systemd/system/gunicorn.service
